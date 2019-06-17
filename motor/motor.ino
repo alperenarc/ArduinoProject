@@ -23,7 +23,6 @@ const int c =  5;
 const int d =  6;
 
 const int BluetoothIleri =  7;
-const int BluetoothSol =  12;
 const int BluetoothSag =  13;
 const int OtomatikMode =  4;
 
@@ -54,11 +53,12 @@ pinMode(c, OUTPUT);
 pinMode(d, OUTPUT);
 pinMode(BluetoothIleri,INPUT);
 pinMode(BluetoothSag,INPUT);
-pinMode(BluetoothSol,INPUT);
 
 
 pinMode(trig, OUTPUT); 
 pinMode(echo, INPUT);
+
+Dur();
 Serial.begin(9600);
 }
 void Dur(){
@@ -77,18 +77,19 @@ void Dur(){
       digitalWrite(d,  LOW);
   }
 void IleriGit(){
-  // motor 1
-      digitalWrite(SagArkaMotor1, LOW);
-      digitalWrite(SagArkaMotor2,  HIGH);  
+// motor 1
+      digitalWrite(SagArkaMotor1, HIGH);
+      digitalWrite(SagArkaMotor2,  LOW);  
       // motor 2
-      digitalWrite(SagOnMotor3, LOW);
-      digitalWrite(SagOnMotor4,  HIGH);
+      digitalWrite(SagOnMotor3, HIGH);
+      digitalWrite(SagOnMotor4,  LOW);
       //motor 3
-      digitalWrite(a, HIGH);
-      digitalWrite(b,  LOW);
+      digitalWrite(a, LOW);
+      digitalWrite(b,  HIGH);
       //motor 4
-      digitalWrite(c, HIGH);
-      digitalWrite(d,  LOW);
+      digitalWrite(c, LOW);
+      digitalWrite(d,  HIGH);
+
   }
   void GeriGit(){
     // motor 1
@@ -147,7 +148,7 @@ void loop()
     distance= duration*0.034/2;
     Serial.print("Distance: ");
     Serial.println(distance);
-    if(distance <= 20){
+    if(distance <= 35){
       Dur();
       delay(200);
       SagGit();
@@ -155,6 +156,5 @@ void loop()
       }
     }
       else if(digitalRead(BluetoothIleri) == true){IleriGit();}
-      else if(digitalRead(BluetoothSol) == true){SolGit();}
       else if(digitalRead(BluetoothSag) == true){SagGit();}
     }
